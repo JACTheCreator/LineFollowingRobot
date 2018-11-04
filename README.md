@@ -14,3 +14,5 @@ A Line Following Robot is an autonomous robot that is able to follow either a bl
  "Wired Diagram")
  
 ## Demo
+![alt text](https://github.com/JACTheCreator/LineFollowingRobot/blob/master/images/demo.gif
+ "Demo Video")
