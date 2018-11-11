@@ -3,8 +3,15 @@
 Servo rightServo;
 Servo leftServo;
 
+/*
+ * The setup() function is called when a sketch starts. 
+ * Use it to initialize variables, pin modes, start using libraries, etc.
+ */
 void setup() 
 {
+  /**
+   * Configures the specified pins on the sensors to behave an input.
+   */
   pinMode(2, INPUT); //s0
   pinMode(3, INPUT); //s1
   pinMode(4, INPUT); //s2
@@ -13,23 +20,21 @@ void setup()
   pinMode(7, INPUT); //s5
   pinMode(8, INPUT); //s6
   pinMode(9, INPUT); //s7
-
-  checkAttachedStatus();
 }
+
 
 void loop() 
 {
-  if(digitalRead(5) == 0 && digitalRead(6) == 0)
-  {
-    forward();
+  if(digitalRead(5) == 1 && digitalRead(6)== 1 )
+    {forward();
   }
-  else if(digitalRead(2) == 0 || digitalRead(3) == 0 || digitalRead(4)== 0 || digitalRead(5) == 0)
-  {
-    right();
-  }
-  else if(digitalRead(6) == 0 || digitalRead(7) == 0 || digitalRead(8) == 0 || digitalRead(9) == 0)
+  else if(digitalRead(7) ==1 || digitalRead(9) ==1)
   {
     left();
+  }
+  else if(digitalRead(2) == 1 || digitalRead(3) == 1 || digitalRead(3) == 1)
+  {
+    right();
   }
   else
   {
@@ -37,6 +42,9 @@ void loop()
   }
 }
 
+/*
+ *
+ */
 void forward()
 {
   checkAttachedStatus();
@@ -44,6 +52,9 @@ void forward()
   rightServo.write(180);
 }
 
+/*
+ *
+ */
 void reverse()
 {
   checkAttachedStatus();
@@ -51,6 +62,9 @@ void reverse()
   rightServo.write(-180);
 }
 
+/*
+ *
+ */
 void left()
 {
   checkAttachedStatus();
@@ -58,6 +72,9 @@ void left()
   rightServo.write(-180);
 }
 
+/*
+ *
+ */
 void right()
 {
   checkAttachedStatus();
@@ -65,12 +82,18 @@ void right()
   rightServo.write(180);
 }
 
+/*
+ *
+ */
 void stop()
 {
  rightServo.detach();
  leftServo.detach();
 }
 
+/*
+ *
+ */
 void checkAttachedStatus()
 {
   if(!leftServo.attached() && !rightServo.attached())
