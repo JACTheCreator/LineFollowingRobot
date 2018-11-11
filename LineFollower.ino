@@ -3,12 +3,14 @@
 Servo rightServo;
 Servo leftServo;
 
-/*
+/**
  * The setup() function is called when a sketch starts. 
  * Use it to initialize variables, pin modes, start using libraries, etc.
  */
 void setup() 
 {
+  pinMode(11, INPUT);
+
   /**
    * Configures the specified pins on the sensors to behave an input.
    */
@@ -25,15 +27,25 @@ void setup()
 
 void loop() 
 {
-  if(digitalRead(5) == 0 && digitalRead(6) == 0)
+  followLine(digitalRead(11));
+}
+
+/**
+ * If the value is: 
+ * 0/false/LOW -> Follows a white line on a black surface
+ * 1/true/HIGH -> Follows a black line on a white surface
+ */
+void followLine(uint8_t lineColour)
+{
+  if(digitalRead(5) == lineColour && digitalRead(6) == lineColour)
   {	   
     forward();
   }	  
-  else if(digitalRead(2) == 0 || digitalRead(3) == 0 || digitalRead(4)== 0 || digitalRead(5) == 0)
+  else if(digitalRead(2) == lineColour || digitalRead(3) == lineColour || digitalRead(4)== lineColour || digitalRead(5) == lineColour)
   {	  
     right(); 
   }	  
-  else if(digitalRead(6) == 0 || digitalRead(7) == 0 || digitalRead(8) == 0 || digitalRead(9) == 0)	
+  else if(digitalRead(6) == lineColour || digitalRead(7) == lineColour || digitalRead(8) == lineColour || digitalRead(9) == lineColour)	
   {	  
     left();
   }	 
@@ -43,7 +55,7 @@ void loop()
   }
 }
 
-/*
+/**
  *
  */
 void forward()
