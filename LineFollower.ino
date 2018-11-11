@@ -25,19 +25,20 @@ void setup()
 
 void loop() 
 {
-  if(digitalRead(5) == 1 && digitalRead(6)== 1 )
-    {forward();
-  }
-  else if(digitalRead(7) ==1 || digitalRead(9) ==1)
-  {
+  if(digitalRead(5) == 0 && digitalRead(6) == 0)
+  {	   
+    forward();
+  }	  
+  else if(digitalRead(2) == 0 || digitalRead(3) == 0 || digitalRead(4)== 0 || digitalRead(5) == 0)
+  {	  
+    right(); 
+  }	  
+  else if(digitalRead(6) == 0 || digitalRead(7) == 0 || digitalRead(8) == 0 || digitalRead(9) == 0)	
+  {	  
     left();
-  }
-  else if(digitalRead(2) == 1 || digitalRead(3) == 1 || digitalRead(3) == 1)
-  {
-    right();
-  }
+  }	 
   else
-  {
+  {	 
     stop();
   }
 }
